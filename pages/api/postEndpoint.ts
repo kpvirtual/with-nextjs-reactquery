@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type IPost = {
-    id:string;
-    title:string;
-    body:string;
+  id: string;
+  title: string;
+  body: string;
 
 }
 
@@ -47,12 +47,9 @@ function handler(req: NextApiRequest, res: NextApiResponse<IPost>) {
 
 
     const newPost = {
-
       id: new Date().toISOString(),
-
-      title:req.body.taskTitle,
-      body:req.body.taskDescription,
-
+      title: req.body.taskTitle,
+      body: req.body.taskDescription,
     };
 
 
@@ -73,7 +70,7 @@ function handler(req: NextApiRequest, res: NextApiResponse<IPost>) {
 
       .status(201)
 
-      .json({ message:"Success!", status: true, recognition: newPost });
+      .json({ message: "Success!", status: true, recognition: newPost });
 
   } else {
 

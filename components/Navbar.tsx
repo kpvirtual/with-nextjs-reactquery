@@ -1,9 +1,11 @@
+
+
 import Link from 'next/link';
 import * as React from 'react';
 import styles from "../styles/components/Navbar.module.css"
 export interface INavbarProps {
 }
-
+//how to get the stock data of Tesla in python? 
 export function Navbar(props: INavbarProps) {
     return (
 
@@ -14,7 +16,9 @@ export function Navbar(props: INavbarProps) {
             </div>
             <div className={styles.links}>
                 <Link href="/todos">Todos</Link>
+                <Link href="/table">table</Link>
                 <Link href="/">Add Todo</Link>
+                <Link href="/login">Login</Link>
             </div>
         </div>
     );

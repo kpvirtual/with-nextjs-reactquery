@@ -20,13 +20,8 @@ async function getTodos() {
         },
       },
     );
-
-    // console.log(JSON.stringify(data, null, 4));
-
-    // 👇️ "response status is: 200"
-    // console.log('response status is: ', status);
-
-    return data;
+    const { posts } = data;
+    return posts;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.log('error message: ', error.message);
@@ -37,6 +32,7 @@ async function getTodos() {
     }
   }
 }
+
 async function createTodo(bodyObject: object) {
   try {
     // 👇️ const data: CreateUserResponse

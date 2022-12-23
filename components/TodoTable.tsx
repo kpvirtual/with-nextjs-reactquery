@@ -40,7 +40,7 @@ export function TodoTable(props: ITodoTableProps) {
                             <tbody>
                             
                                 {
-                                    data && data?.posts?.map((todo: any) => {
+                                    data && data?.map((todo: any) => {
                                         return (
                                             <tr className="border-b" tabIndex={todo.id}>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{todo.title}</td>
