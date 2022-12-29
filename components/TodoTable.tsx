@@ -1,7 +1,9 @@
-import { useMutation, useQuery ,useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import * as React from 'react';
 import { getTodos } from '../api/todo';
+import { useSession } from "next-auth/react"
+import Router from "next/router";
 
 export interface ITodoTableProps {
 }
@@ -10,21 +12,18 @@ export interface ITodoTableProps {
 
 
 export function TodoTable(props: ITodoTableProps) {
-    const { data,isLoading} = useQuery(["todos"], getTodos, {
-        // cacheTime:5000
-        // staleTime:30000
-
-    })
-    // console.log({isFetching, isLoading})
+    const { data:userData, status } = useSession()
+    const { data, isLoading } = useQuery(["todos"], getTodos)
     if (isLoading) {
         return <h1>Loading</h1>
     }
+    
     return (
         <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                     <div className="overflow-hidden">
-                  
+
                         <table className="min-w-full">
                             <thead className="border-b">
                                 <tr>
@@ -38,7 +37,7 @@ export function TodoTable(props: ITodoTableProps) {
                                 </tr>
                             </thead>
                             <tbody>
-                            
+
                                 {
                                     data && data?.map((todo: any) => {
                                         return (

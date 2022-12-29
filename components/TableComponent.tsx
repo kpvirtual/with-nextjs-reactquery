@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { useReactTable } from "@tanstack/react-table"
+import { useReactTable } from "@tanstack/react-table";
 import { useTable, Column, useSortBy, TableOptions, usePagination } from "react-table";
 import { useQuery } from '@tanstack/react-query';
 import { getTodos } from '../api/todo';
@@ -46,10 +46,7 @@ export function TableComponent(props: ITableComponentProps) {
         headerGroups,
         rows,
         prepareRow,
-        page, // Instead of using 'rows', we'll use page,
-        // which has only the rows for the active page
-
-        // The rest of these things are super handy, too ;)
+        page,
         canPreviousPage,
         canNextPage,
         pageOptions,
@@ -61,7 +58,6 @@ export function TableComponent(props: ITableComponentProps) {
         state: { pageIndex, pageSize },
         allColumns,
         getToggleHideAllColumnsProps
-
     } = useTable<Data>({ data: tableData, columns, initialState: { pageSize: 10 } as any, }, useSortBy, usePagination);
     if (isLoading) {
         return <h1>Loading</h1>
@@ -71,15 +67,15 @@ export function TableComponent(props: ITableComponentProps) {
         <React.Fragment>
             <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div style={{marginLeft:"300px"}}>
+                    <div style={{ marginLeft: "300px" }}>
                         <div>
                             <input type="checkbox" {...getToggleHideAllColumnsProps()} /> Toggle All
                         </div>
                         {allColumns.map(column => (
                             <div key={column.id}>
-                                
-                                    <input type='checkbox' {...column.getToggleHiddenProps()} />{' '}
-                                    <label className='form-label inline-block mb-2 text-gray-700'>{column.Header}
+
+                                <input type='checkbox' {...column.getToggleHiddenProps()} />{' '}
+                                <label className='form-label inline-block mb-2 text-gray-700'>{column?.Header}
                                 </label>
                             </div>
                         ))}
@@ -167,27 +163,6 @@ export function TableComponent(props: ITableComponentProps) {
                     ))}
                 </select>
             </div>
-
-            {/* <div>
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                    {'<<'}
-                </button>{' '}
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    {'<'}
-                </button>{' '}
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    {'>'}
-                </button>{' '}
-                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                    {'>>'}
-                </button>{' '}
-                <span>
-                    Page{' '}
-                    <strong>
-                        {pageIndex + 1} of {pageOptions.length}
-                    </strong>{' '}
-                </span>
-            </div> */}
         </React.Fragment>
     )
 

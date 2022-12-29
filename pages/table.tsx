@@ -10,7 +10,7 @@ export default function Table(props: ITableProps) {
   return (
     <div>
       <Navbar />
-      <TableComponent />
+      <TableComponent pageSize={2}/>
     </div >
   );
 }
