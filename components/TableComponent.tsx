@@ -38,7 +38,7 @@ export function TableComponent(props: ITableComponentProps) {
     const { data, isLoading, isFetched } = useQuery(["todos"], getTodos);
     const [tableData, setTableData] = React.useState([]);
     React.useEffect(() => {
-        isFetched && setTableData(data);
+        isFetched && setTableData(data?.posts);
     }, [isFetched, data]);
     const {
         getTableProps,
@@ -99,7 +99,7 @@ export function TableComponent(props: ITableComponentProps) {
                                         ))}
                                 </thead>
                                 <tbody {...getTableBodyProps()}>
-                                    {
+                                    {page &&
                                         page?.map(row => {
                                             prepareRow(row)
                                             return (

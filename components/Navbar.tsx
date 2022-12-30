@@ -3,12 +3,14 @@
 import Link from 'next/link';
 import * as React from 'react';
 import styles from "../styles/components/Navbar.module.css";
-import { useSession , signOut} from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
+import { useRouter } from "next/navigation"
 export interface INavbarProps {
 }
 //how to get the stock data of Tesla in python? 
 export function Navbar(props: INavbarProps) {
-    const { data: session } = useSession()
+    const { data: session } = useSession();
+    const router = useRouter()
     return (
 
         <div className={styles.navbar}>
@@ -21,7 +23,10 @@ export function Navbar(props: INavbarProps) {
                 <Link href="/table">table</Link>
                 <Link href="/">Add Todo</Link>
                 {!session && <Link href="/login">Login</Link>}
-                {session && <Link href="/login" onClick={() => signOut()}>logout</Link>}
+                {session && <Link href="/login" onClick={() => {
+                    signOut()
+                    // router.push('/login')
+                }}>logout</Link>}
             </div>
         </div>
     );

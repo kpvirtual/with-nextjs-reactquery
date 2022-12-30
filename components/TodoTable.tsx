@@ -14,6 +14,7 @@ export interface ITodoTableProps {
 export function TodoTable(props: ITodoTableProps) {
     const { data:userData, status } = useSession()
     const { data, isLoading } = useQuery(["todos"], getTodos)
+    console.log(userData)
     if (isLoading) {
         return <h1>Loading</h1>
     }
@@ -39,7 +40,7 @@ export function TodoTable(props: ITodoTableProps) {
                             <tbody>
 
                                 {
-                                    data && data?.map((todo: any) => {
+                                    data && data?.posts?.map((todo: any) => {
                                         return (
                                             <tr className="border-b" tabIndex={todo.id}>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{todo.title}</td>
